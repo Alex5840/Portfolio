@@ -2,9 +2,10 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import StatsGrid from './components/StatsGrid';
-import Soundboard from './components/Soundboard';
+
 import PortfolioTabs from './components/PortfolioTabs';
 import ContactForm from './components/ContactForm';
+import Soundboard from './components/SoundBoard';
 
 function App() {
   return (
