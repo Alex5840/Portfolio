@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Add this to enable smooth scrolling globally */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* This prevents the sticky navbar from hiding section titles */
+}
