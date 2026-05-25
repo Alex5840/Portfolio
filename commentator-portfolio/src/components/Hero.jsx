@@ -135,7 +135,7 @@ export default function Hero() {
             >
               <div className="absolute inset-0 bg-cyan-500/20 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-500"></div>
               <img 
-                src="/profile.jpg" 
+                src="/profile.jpeg" 
                 alt="Software Engineer"
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
               />
