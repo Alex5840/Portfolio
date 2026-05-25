@@ -2,7 +2,27 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
-  const techStack = ["React", "Node.js", "TypeScript", "PostgreSQL", "AWS"];
+  // Expanded & color-coded skill cloud
+  const techStack = [
+    { name: "React", type: "frontend", color: "text-cyan-400 border-cyan-500/20 bg-cyan-950/20" },
+    { name: "Next.js", type: "frontend", color: "text-cyan-400 border-cyan-500/20 bg-cyan-950/20" },
+    { name: "TypeScript", type: "frontend", color: "text-cyan-400 border-cyan-500/20 bg-cyan-950/20" },
+    { name: "Tailwind CSS", type: "frontend", color: "text-cyan-400 border-cyan-500/20 bg-cyan-950/20" },
+    
+    { name: "Node.js", type: "backend", color: "text-indigo-400 border-indigo-500/20 bg-indigo-950/20" },
+    { name: "Express", type: "backend", color: "text-indigo-400 border-indigo-500/20 bg-indigo-950/20" },
+    { name: "Python", type: "backend", color: "text-indigo-400 border-indigo-500/20 bg-indigo-950/20" },
+    { name: "FastAPI", type: "backend", color: "text-indigo-400 border-indigo-500/20 bg-indigo-950/20" },
+    
+    { name: "PostgreSQL", type: "database", color: "text-emerald-400 border-emerald-500/20 bg-emerald-950/20" },
+    { name: "MongoDB", type: "database", color: "text-emerald-400 border-emerald-500/20 bg-emerald-950/20" },
+    { name: "Redis", type: "database", color: "text-emerald-400 border-emerald-500/20 bg-emerald-950/20" },
+    
+    { name: "AWS", type: "devops", color: "text-purple-400 border-purple-500/20 bg-purple-950/20" },
+    { name: "Docker", type: "devops", color: "text-purple-400 border-purple-500/20 bg-purple-950/20" },
+    { name: "Git", type: "devops", color: "text-purple-400 border-purple-500/20 bg-purple-950/20" },
+    { name: "Puter.js", type: "devops", color: "text-purple-400 border-purple-500/20 bg-purple-950/20" }
+  ];
 
   return (
     <section id="home" className="min-h-[90vh] flex items-center pt-24 pb-12 relative">
@@ -35,19 +55,33 @@ export default function Hero() {
             Full Stack Software Engineer specializing in building scalable, high-performance web applications. I turn complex logic into elegant code.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            {techStack.map((tech, index) => (
-              <motion.div
-                key={tech}
-                style={{ willChange: "transform" }}
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
-                className="flex items-center gap-1.5 px-3 py-1 border border-white/10 rounded-lg bg-white/5 text-slate-300 text-xs font-mono backdrop-blur-sm"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-500"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                {tech}
-              </motion.div>
-            ))}
+          {/* ULTRA-OPTIMIZED, LAG-FREE SKILL CLOUD */}
+          <div className="mt-8 flex flex-wrap gap-3 max-w-xl">
+            {techStack.map((tech, index) => {
+              // Alternate native animations to make the floating look organic
+              const animClass = index % 3 === 0 ? 'animate-bounce' : 
+                                index % 2 === 0 ? 'animate-pulse' : '';
+              
+              return (
+                <div
+                  key={tech.name}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 border rounded-lg text-xs font-mono backdrop-blur-sm shadow-sm 
+                    hover:border-cyan-400/50 hover:text-white hover:scale-105 hover:-translate-y-1
+                    transition-all duration-200 cursor-default select-none ${tech.color} ${animClass}`}
+                  style={{
+                    // Staggering the native animation speeds natively
+                    animationDuration: `${3 + (index % 3)}s`
+                  }}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${
+                    tech.type === 'frontend' ? 'bg-cyan-400' :
+                    tech.type === 'backend' ? 'bg-indigo-400' :
+                    tech.type === 'database' ? 'bg-emerald-400' : 'bg-purple-400'
+                  }`} />
+                  {tech.name}
+                </div>
+              );
+            })}
           </div>
 
           <div className="mt-10 flex gap-4">
@@ -64,7 +98,7 @@ export default function Hero() {
             <motion.a 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="/resume.pdf" 
+              href="/RESUME.pdf" 
               target="_blank" 
               className="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-transparent border border-slate-700 text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors"
             >
@@ -81,10 +115,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="w-full flex justify-center lg:justify-end items-center mt-12 lg:mt-0"
         >
-          {/* Anchor Wrapper: This guarantees perfect center alignment */}
           <div className="relative flex justify-center items-center w-64 h-64 md:w-80 md:h-80">
-            
-            {/* Animated decorative rings */}
             <motion.div 
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -96,16 +127,13 @@ export default function Hero() {
               className="absolute w-[320px] h-[320px] md:w-[410px] md:h-[410px] rounded-full border border-white/5"
             />
 
-            {/* Picture Container */}
             <motion.div 
               style={{ willChange: "transform" }}
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="relative w-full h-full rounded-full overflow-hidden border-2 border-cyan-500/30 bg-[#0a0a0a] shadow-[0_0_40px_rgba(6,182,212,0.15)] group z-10"
             >
-              {/* The Image Overlay */}
               <div className="absolute inset-0 bg-cyan-500/20 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-500"></div>
-              
               <img 
                 src="/profile.jpg" 
                 alt="Software Engineer"
@@ -114,6 +142,7 @@ export default function Hero() {
             </motion.div>
           </div>
         </motion.div>
+
       </div>
     </section>
   );
