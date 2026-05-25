@@ -1,81 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isCurrentlyLive = true; 
-
   return (
-    <header className="sticky top-0 z-50 w-full">
-      {/* Live Status Sub-Banner */}
-      <div className={`w-full text-center py-2 px-4 text-[10px] sm:text-xs font-bold tracking-wider transition-colors ${
-        isCurrentlyLive ? 'bg-rose-600 text-white animate-pulse' : 'bg-slate-900 text-slate-400'
-      }`}>
-        {isCurrentlyLive ? (
-          <div className="flex items-center justify-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-white block"></span>
-            LIVE NOW: CALLING THE LALIGA MATCH — TUNE IN ON TWITCH
-          </div>
-        ) : (
-          "NEXT BROADCAST: CRICKET REGIONAL FINALS — MAY 28TH"
-        )}
-      </div>
-
-      {/* Main Glass Navigation Block */}
-      <nav className="backdrop-blur-md bg-[#0f172a]/80 border-b border-slate-800/50 px-6 py-4 relative">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl font-extrabold tracking-wider bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent z-50">
-            VOICE // PROFILE
-          </div>
-          
-          {/* Desktop Menu (Hidden on Mobile) */}
-          <div className="hidden md:flex gap-8 text-sm font-medium text-slate-300">
-            <a href="#home" className="hover:text-emerald-400 transition-colors">Home</a>
-            <a href="#work" className="hover:text-emerald-400 transition-colors">Showreel</a>
-            <a href="#contact" className="hover:text-emerald-400 transition-colors">Book Now</a>
-          </div>
-
-          {/* Mobile Hamburger Button (Hidden on Desktop) */}
-          <button 
-            className="md:hidden text-slate-300 hover:text-emerald-400 focus:outline-none z-50"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+    <motion.header 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="fixed top-0 w-full z-50 backdrop-blur-md bg-[#050505]/50 border-b border-white/5"
+    >
+      <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <motion.div 
+          whileHover={{ scale: 1.05 }}
+          className="flex items-center gap-2 text-cyan-400 font-mono font-bold text-lg cursor-pointer"
+        >
+          {/* Native Terminal SVG */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+          <span>DEV_ENV</span>
+        </motion.div>
+        
+        <div className="flex gap-8 text-sm font-semibold tracking-wide text-slate-300">
+          {['Home', 'Projects', 'Contact'].map((item) => (
+            <a 
+              key={item} 
+              href={`#${item.toLowerCase()}`} 
+              className="relative group hover:text-cyan-400 transition-colors py-2"
+            >
+              {item}
+              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 ease-out group-hover:w-full"></span>
+            </a>
+          ))}
         </div>
-
-        {/* Mobile Dropdown Menu */}
-        {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-[#0f172a] border-b border-slate-800 shadow-2xl md:hidden flex flex-col py-4 px-6 gap-4">
-            <a 
-              href="#home" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-400"
-            >
-              Home
-            </a>
-            <a 
-              href="#work" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-400"
-            >
-              Showreel
-            </a>
-            <a 
-              href="#contact" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-400"
-            >
-              Book Now
-            </a>
-          </div>
-        )}
       </nav>
-    </header>
+    </motion.header>
   );
 }

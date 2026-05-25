@@ -1,26 +1,39 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import StatsGrid from './components/StatsGrid';
-
-import PortfolioTabs from './components/PortfolioTabs';
-import ContactForm from './components/ContactForm';
-import Soundboard from './components/SoundBoard';
+import Projects from './components/Projects';
+import Terminal from './components/Terminal';
+import Contact from './components/Contact';
+import Background from './components/Background';
+import CustomCursor from './components/CustomCursor';
+import MouseRipples from './components/MouseRipples';
 
 function App() {
   return (
-    <div className="bg-[#0f172a] text-slate-100 min-h-screen font-sans selection:bg-emerald-500 selection:text-white antialiased">
-      <Navbar />
-      <main>
-        <Hero />
-        <StatsGrid />
-        <Soundboard />
-        <PortfolioTabs />
-        <ContactForm />
-      </main>
-      <footer className="bg-[#0b0f19] text-center py-6 text-sm text-slate-500 border-t border-slate-800">
-        <p>&copy; {new Date().getFullYear()} Professional Commentator Portfolio. Built from scratch.</p>
-      </footer>
+    <div className="relative min-h-screen text-slate-300 font-sans selection:bg-cyan-500/30 selection:text-cyan-200 antialiased overflow-x-hidden md:cursor-none">
+      
+      {/* Interactive Overlays */}
+      <CustomCursor />
+      <MouseRipples />
+      
+      {/* Base Environment */}
+      <Background />
+      
+      {/* Core Application */}
+      <div className="relative z-10">
+        <Navbar />
+        <main className="max-w-6xl mx-auto px-6">
+          <Hero />
+          <Projects />
+          <Terminal />
+          <Contact />
+        </main>
+        
+        <footer className="border-t border-white/5 py-8 text-center text-xs text-slate-600 font-mono mt-20 backdrop-blur-sm">
+          <p>System initialized. &copy; {new Date().getFullYear()} Software Engineer Portfolio.</p>
+        </footer>
+      </div>
+      
     </div>
   );
 }
